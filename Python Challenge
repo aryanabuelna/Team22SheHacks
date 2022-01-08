@@ -1,0 +1,42 @@
+word = input("Please enter your word:") #Prompt user for input
+life = int(input("Please enter # of lives your opponent has:"))
+print("\n" * 50)
+letterGuessed = 0
+blanks = ["_"] * len(word)
+
+while life >= 0 and letterGuessed != len(word):
+  print("WORD:")
+  print(blanks)
+  print("GUESSES LEFT: " + str(life))
+  letter = input("Please enter your guess: ")
+
+  guessed = False
+
+  # edge cases for invalid input
+  if letter >= chr(33) and letter <= chr(64):
+   print("Ivalid input.")
+   #0continue
+  elif letter >= chr(91) and letter <= chr(96):
+   print("Ivalid input.")
+   #continue
+  elif letter >= chr(123) and letter <= chr(126):
+   print("Ivalid input.")
+   #continue
+
+  for i in range(len(word)):
+    if word [i] == letter:
+      blanks[i] = letter
+      letterGuessed = letterGuessed + 1
+      guessed = True
+      print("Correct.")
+
+  if not guessed:
+    life = life - 1 
+    print("Incorrect. Letter is not in the word.")
+
+
+print()
+if life < 0:
+  print("Sorry! You have run out of lives!")
+else:
+  print("Congrats!")
